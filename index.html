@@ -1,557 +1,137 @@
 <!doctype html>
-<html lang="ur" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>ذائقہ کچن — ڈیمو مینو</title>
-  <meta
-    name="description"
-    content="ایک ریسٹورنٹ کے موبائل مینو کا نمونہ۔ تمام نام اور قیمتیں فرضی ہیں۔"
-  >
-
-  <style>
-    :root {
-      --bg: #101411;
-      --surface: #19201b;
-      --border: #303b31;
-      --text: #f5f3e9;
-      --muted: #b8c0b7;
-      --accent: #efc778;
-      --green: #25d366;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: system-ui, "Segoe UI", Arial, sans-serif;
-      line-height: 1.7;
-    }
-
-    button, a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    button {
-      font: inherit;
-    }
-
-    .container {
-      width: min(100% - 32px, 760px);
-      margin-inline: auto;
-    }
-
-    .demo-strip {
-      padding: 9px 16px;
-      text-align: center;
-      background: #292419;
-      color: var(--accent);
-      font-size: 12px;
-    }
-
-    header {
-      padding: 36px 0 30px;
-      text-align: center;
-      background:
-        radial-gradient(circle at top, #34412a 0, transparent 65%),
-        var(--bg);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .brand-mark {
-      display: grid;
-      place-items: center;
-      width: 76px;
-      height: 76px;
-      margin: 0 auto 14px;
-      border: 1px solid var(--accent);
-      border-radius: 22px;
-      background: #20291e;
-      color: var(--accent);
-      font-size: 28px;
-      font-weight: 800;
-    }
-
-    .eyebrow {
-      margin: 0 0 6px;
-      color: var(--accent);
-      font-size: 12px;
-      letter-spacing: 2px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(28px, 6vw, 42px);
-      line-height: 1.4;
-    }
-
-    .subtitle {
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 46px;
-      padding: 10px 20px;
-      border: 1px solid transparent;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .btn-wa {
-      background: var(--green);
-      color: #082a15;
-    }
-
-    .btn-call {
-      background: transparent;
-      border-color: #697565;
-      color: var(--text);
-    }
-
-    .btn:focus-visible {
-      outline: 3px solid var(--accent);
-      outline-offset: 4px;
-    }
-
-    main {
-      padding: 28px 0;
-    }
-
-    .section-heading {
-      margin-bottom: 20px;
-    }
-
-    .section-heading h2 {
-      margin: 0;
-      font-size: 24px;
-    }
-
-    .section-heading p {
-      margin: 5px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      overflow: hidden;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-    }
-
-    .photo {
-      display: grid;
-      place-items: center;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      background: #222a22;
-    }
-
-    .photo img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .placeholder {
-      display: none;
-      width: 100%;
-      height: 100%;
-      padding: 24px;
-      place-content: center;
-      text-align: center;
-      background:
-        radial-gradient(circle at center, #414b2f, #20271f);
-    }
-
-    .placeholder-icon {
-      display: block;
-      font-size: 48px;
-      line-height: 1.3;
-    }
-
-    .placeholder-title {
-      display: block;
-      margin-top: 8px;
-      color: var(--accent);
-      font-size: 17px;
-      font-weight: 700;
-    }
-
-    .placeholder-note {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .photo.is-missing img {
-      display: none;
-    }
-
-    .photo.is-missing .placeholder {
-      display: grid;
-    }
-
-    .card-body {
-      padding: 18px;
-    }
-
-    .category {
-      margin: 0 0 5px;
-      color: var(--accent);
-      font-size: 11px;
-    }
-
-    .card h3 {
-      margin: 0;
-      font-size: 20px;
-      line-height: 1.5;
-    }
-
-    .description {
-      margin: 8px 0 16px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .price-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-    }
-
-    .price {
-      color: var(--accent);
-      font-size: 20px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .price-label {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .order-panel {
-      margin-top: 24px;
-      padding: 22px;
-      text-align: center;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background: var(--surface);
-    }
-
-    .order-panel h2 {
-      margin: 0;
-      font-size: 20px;
-    }
-
-    .order-panel p {
-      margin: 8px 0 16px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .notice {
-      margin: 14px 0 0;
-      padding: 12px;
-      background: #292419;
-      border-radius: 10px;
-      color: var(--accent);
-      font-size: 13px;
-    }
-
-    .notice[hidden] {
-      display: none;
-    }
-
-    footer {
-      padding: 4px 16px 28px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    @media (max-width: 560px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .container {
-        width: min(100% - 28px, 760px);
-      }
-
-      header {
-        padding-top: 28px;
-      }
-
-      .card-body {
-        padding: 16px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="demo-strip">
-    ڈیمو پریویو — ریسٹورنٹ کا نام، مینو اور قیمتیں فرضی ہیں
-  </div>
-
-  <header>
-    <div class="container">
-
-      <!-- لوگو آنے تک یہ نشان استعمال کریں -->
-      <div class="brand-mark" aria-label="ریسٹورنٹ کا عارضی نشان">
-        ذ ک
-      </div>
-
-      <p class="eyebrow" lang="en" dir="ltr">FRESH • FLAVOURFUL • LOCAL</p>
-
-      <h1>ذائقہ کچن</h1>
-
-      <p class="subtitle">
-        کراچی · بریانی، باربی کیو اور فاسٹ فوڈ
-      </p>
-
-      <div class="buttons">
-        <a class="btn btn-wa" data-contact="whatsapp" href="#order">
-          WhatsApp پر رابطہ
-        </a>
-
-        <a class="btn btn-call" data-contact="call" href="#order">
-          فون کریں
-        </a>
-      </div>
-
-    </div>
-  </header>
-
-  <main class="container">
-
-    <div class="section-heading">
-      <h2>ہمارا مینو</h2>
-      <p>نمونہ آئٹمز — اصل مینو کے مطابق تبدیل کیے جاسکتے ہیں</p>
-    </div>
-
-    <div class="grid">
-
-      <article class="card">
-        <div class="photo">
-          <img src="images/item1.jpg" alt="چکن بریانی">
-
-          <div class="placeholder">
-            <span class="placeholder-icon" aria-hidden="true">🍚</span>
-            <span class="placeholder-title">چکن بریانی</span>
-            <span class="placeholder-note">تصویر جلد شامل کی جائے گی</span>
-          </div>
-        </div>
-
-        <div class="card-body">
-          <p class="category">بریانی</p>
-          <h3>چکن بریانی</h3>
-          <p class="description">
-            خوشبودار چاول اور چکن — مینو کی تفصیل کا نمونہ۔
-          </p>
-
-          <div class="price-row">
-            <span class="price" dir="ltr">Rs. 350</span>
-            <span class="price-label">نمونہ قیمت</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="photo">
-          <img src="images/item2.jpg" alt="باربی کیو پلیٹر">
-
-          <div class="placeholder">
-            <span class="placeholder-icon" aria-hidden="true">🔥</span>
-            <span class="placeholder-title">باربی کیو پلیٹر</span>
-            <span class="placeholder-note">تصویر جلد شامل کی جائے گی</span>
-          </div>
-        </div>
-
-        <div class="card-body">
-          <p class="category">باربی کیو</p>
-          <h3>باربی کیو پلیٹر</h3>
-          <p class="description">
-            گرلڈ باربی کیو کا انتخاب — مینو کی تفصیل کا نمونہ۔
-          </p>
-
-          <div class="price-row">
-            <span class="price" dir="ltr">Rs. 950</span>
-            <span class="price-label">نمونہ قیمت</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="photo">
-          <img src="images/item3.jpg" alt="بیف برگر">
-
-          <div class="placeholder">
-            <span class="placeholder-icon" aria-hidden="true">🍔</span>
-            <span class="placeholder-title">بیف برگر</span>
-            <span class="placeholder-note">تصویر جلد شامل کی جائے گی</span>
-          </div>
-        </div>
-
-        <div class="card-body">
-          <p class="category">فاسٹ فوڈ</p>
-          <h3>بیف برگر</h3>
-          <p class="description">
-            بیف پیٹی اور ساس کے ساتھ — مینو کی تفصیل کا نمونہ۔
-          </p>
-
-          <div class="price-row">
-            <span class="price" dir="ltr">Rs. 450</span>
-            <span class="price-label">نمونہ قیمت</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="photo">
-          <img src="images/item4.jpg" alt="ملائی بوٹی">
-
-          <div class="placeholder">
-            <span class="placeholder-icon" aria-hidden="true">🍢</span>
-            <span class="placeholder-title">ملائی بوٹی</span>
-            <span class="placeholder-note">تصویر جلد شامل کی جائے گی</span>
-          </div>
-        </div>
-
-        <div class="card-body">
-          <p class="category">باربی کیو</p>
-          <h3>ملائی بوٹی</h3>
-          <p class="description">
-            کریمی چکن بوٹی — مینو کی تفصیل کا نمونہ۔
-          </p>
-
-          <div class="price-row">
-            <span class="price" dir="ltr">Rs. 650</span>
-            <span class="price-label">نمونہ قیمت</span>
-          </div>
-        </div>
-      </article>
-
-    </div>
-
-    <section class="order-panel" id="order">
-      <h2>مینو دیکھیں، پھر رابطہ کریں</h2>
-
-      <p>
-        اصل ریسٹورنٹ کا نمبر شامل کرنے کے بعد یہ بٹن WhatsApp
-        پر گفتگو کھولے گا۔ اس ڈیمو میں کارٹ یا خودکار آرڈر سسٹم شامل نہیں۔
-      </p>
-
-      <a class="btn btn-wa" data-contact="whatsapp" href="#order">
-        WhatsApp کھولیں
-      </a>
-
-      <p class="notice" id="demo-notice" role="status" hidden>
-        یہ صرف ڈیمو ہے۔ اصل فون اور WhatsApp نمبر ابھی شامل نہیں کیا گیا۔
-      </p>
-    </section>
-
-  </main>
-
-  <footer>
-    Sample restaurant menu · Concept by The iSource Digital
-    <br>
-    تصاویر، نام اور قیمتیں حتمی ریسٹورنٹ مینو کی نمائندگی نہیں کرتے۔
-  </footer>
-
-  <script>
-    /*
-      اصل نمبر ڈالنے کے لیے مثال:
-      const WHATSAPP_NUMBER = "923001234567";
-      const PHONE_NUMBER = "+923001234567";
-
-      ابھی خالی رکھیں تاکہ کسی غلط نمبر پر رابطہ نہ ہو۔
-    */
-
-    const WHATSAPP_NUMBER = "";
-    const PHONE_NUMBER = "";
-    const RESTAURANT_NAME = "ذائقہ کچن";
-
-    function showPlaceholder(img) {
-      img.parentElement.classList.add("is-missing");
-    }
-
-    document.querySelectorAll(".photo img").forEach(function (img) {
-      img.addEventListener("error", function () {
-        showPlaceholder(img);
-      });
-
-      if (img.complete && img.naturalWidth === 0) {
-        showPlaceholder(img);
-      }
-    });
-
-    document.querySelectorAll("[data-contact]").forEach(function (link) {
-      const type = link.dataset.contact;
-
-      if (type === "whatsapp" && WHATSAPP_NUMBER) {
-        const message =
-          "السلام علیکم، میں " + RESTAURANT_NAME + " کا مینو دیکھ کر رابطہ کر رہا ہوں۔";
-
-        link.href =
-          "https://wa.me/" +
-          WHATSAPP_NUMBER +
-          "?text=" +
-          encodeURIComponent(message);
-
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-      } else if (type === "call" && PHONE_NUMBER) {
-        link.href = "tel:" + PHONE_NUMBER;
-      } else {
-        link.addEventListener("click", function (event) {
-          event.preventDefault();
-
-          const notice = document.getElementById("demo-notice");
-          notice.hidden = false;
-          notice.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-          });
-        });
-      }
-    });
-  </script>
-
-</body>
-</html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffb800">
+<title>Restaurant Menu</title>
+
+<style>
+:root{
+  --yellow:#ffb800;
+  --ink:#202322;
+  --muted:#777;
+  --line:#ececec;
+  --paper:#fff;
+  --bg:#f8f9fa;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;
+}
+button,input,textarea{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
+  outline:3px solid #b88100;outline-offset:3px;
+}
+button{border:0}
+a{color:inherit;text-decoration:none}
+[hidden]{display:none!important}
+
+.sidebar{
+  width:82px;position:fixed;inset:0 auto 0 0;
+  background:white;border-right:1px solid var(--line);
+  display:flex;flex-direction:column;align-items:center;
+  gap:20px;padding:25px 0;z-index:30;
+}
+.side-button{
+  width:46px;height:46px;border-radius:15px;
+  background:transparent;color:#777;
+  display:grid;place-items:center;font-size:22px;
+}
+.side-button.active{background:#fff5d7;color:#a36d00}
+.side-button:hover{background:#f3f3f3}
+.side-bottom{margin-top:auto}
+.app{margin-left:82px}
+.topbar{
+  height:94px;position:sticky;top:0;z-index:20;
+  background:#fffffff5;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;padding:16px 32px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-logo{
+  width:52px;height:52px;border-radius:14px;
+  object-fit:contain;background:#fff6d9;
+}
+.brand-symbol{
+  width:52px;height:52px;border-radius:14px;
+  background:var(--yellow);display:grid;place-items:center;
+  font-size:27px;
+}
+.brand-name{font-size:23px;font-weight:900;letter-spacing:-1px}
+.brand-caption{
+  margin-top:4px;font-size:10px;letter-spacing:2px;color:#777;
+}
+.location-button{
+  display:flex;align-items:center;gap:11px;
+  background:none;text-align:left;padding:7px;
+}
+.location-icon{
+  background:#f6f6f6;width:42px;height:42px;
+  border-radius:50%;display:grid;place-items:center;font-size:21px;
+}
+.location-label{font-size:10px;color:#777;letter-spacing:1px}
+.location-value{font-size:14px;font-weight:700;margin-top:5px}
+.top-cart{
+  background:#fff4d2;border-radius:12px;padding:12px 15px;
+  font-weight:700;white-space:nowrap;
+}
+.header-actions{display:flex;align-items:center;gap:12px}
+.demo-note{
+  padding:7px 20px;text-align:center;font-size:11px;
+  background:#fff8e7;color:#806015;
+}
+.content{max-width:1380px;margin:auto;padding:22px 30px 110px}
+.hero{
+  position:relative;overflow:hidden;border-radius:28px;
+  min-height:340px;background:#103a2c;
+  display:grid;grid-template-columns:1.1fr 1fr;
+  align-items:center;color:white;
+}
+.hero:before{
+  content:"";position:absolute;width:450px;height:450px;
+  border:1px solid #ffffff16;border-radius:50%;
+  right:-60px;top:-50px;
+}
+.hero-copy{position:relative;z-index:2;padding:38px}
+.hero-tag{
+  display:inline-block;padding:8px 13px;
+  background:var(--yellow);color:#222;border-radius:50px;
+  font-size:11px;font-weight:800;letter-spacing:1px;
+}
+.hero h1{
+  font-size:clamp(34px,4vw,62px);line-height:1.03;
+  letter-spacing:-2px;margin:19px 0 14px;
+}
+.hero p{color:#d2e5db;line-height:1.7;max-width:370px;font-size:14px}
+.hero-button{
+  display:inline-block;background:var(--yellow);
+  color:#222;padding:13px 20px;border-radius:12px;
+  font-weight:800;margin-top:12px;
+}
+.hero-art{
+  position:relative;display:grid;place-items:center;
+  padding:20px;min-height:300px;
+}
+.hero-art img{
+  width:100%;height:300px;object-fit:contain;
+  filter:drop-shadow(0 20px 25px #0004);
+}
+.hero.custom-banner{
+  display:block;padding:0;background:#103a2c;min-height:0;
+}
+.hero.custom-banner>img{display:block;width:100%;height:auto}
+.categories-wrap{
+  position:sticky;top:94px;z-index:15;
+  background:var(--bg);padding:17px 0;
+}
+.categories{
+  display:flex;gap:10px;overflow-x:auto;
+  scrollbar-width:thin;padding-bottom:5px;
+}
+.category{
+  padding:13px 22px;white-space:nowrap;border-radius:30px;
+  background:#eee;color:#555;font-size:13px;font-weight:
