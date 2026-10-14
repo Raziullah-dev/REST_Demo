@@ -1,67 +1,557 @@
 <!doctype html>
 <html lang="ur" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>[RESTAURANT NAME] — Menu & Contact</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,Segoe UI,Arial,sans-serif}
-body{background:#111;color:#fff}
-header{padding:30px 18px;text-align:center;background:linear-gradient(160deg,#1f1f1f,#333)}
-header img{width:96px;height:96px;border-radius:16px;object-fit:cover;margin-bottom:12px}
-header h1{font-size:24px}
-header p{color:#bbb;margin-top:6px}
-.buttons{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
-.btn{padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700}
-.wa{background:#25D366;color:#fff}
-.call{background:#fff;color:#111}
-section{max-width:520px;margin:0 auto;padding:20px}
-h2{font-size:18px;margin-bottom:12px;color:#ffd166}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.card img{
-  display:block;
-  width:100%;
-  height:auto;
-}.card img{width:100%;height:110px;object-fit:cover}
-.card div{padding:10px}
-.card h3{font-size:15px}
-.card p{font-size:13px;color:#aaa;margin-top:4px}
-footer{text-align:center;padding:22px;color:#888;font-size:12px}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>ذائقہ کچن — ڈیمو مینو</title>
+  <meta
+    name="description"
+    content="ایک ریسٹورنٹ کے موبائل مینو کا نمونہ۔ تمام نام اور قیمتیں فرضی ہیں۔"
+  >
+
+  <style>
+    :root {
+      --bg: #101411;
+      --surface: #19201b;
+      --border: #303b31;
+      --text: #f5f3e9;
+      --muted: #b8c0b7;
+      --accent: #efc778;
+      --green: #25d366;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, "Segoe UI", Arial, sans-serif;
+      line-height: 1.7;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(100% - 32px, 760px);
+      margin-inline: auto;
+    }
+
+    .demo-strip {
+      padding: 9px 16px;
+      text-align: center;
+      background: #292419;
+      color: var(--accent);
+      font-size: 12px;
+    }
+
+    header {
+      padding: 36px 0 30px;
+      text-align: center;
+      background:
+        radial-gradient(circle at top, #34412a 0, transparent 65%),
+        var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 14px;
+      border: 1px solid var(--accent);
+      border-radius: 22px;
+      background: #20291e;
+      color: var(--accent);
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .eyebrow {
+      margin: 0 0 6px;
+      color: var(--accent);
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 6vw, 42px);
+      line-height: 1.4;
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 46px;
+      padding: 10px 20px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-wa {
+      background: var(--green);
+      color: #082a15;
+    }
+
+    .btn-call {
+      background: transparent;
+      border-color: #697565;
+      color: var(--text);
+    }
+
+    .btn:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    main {
+      padding: 28px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 20px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .section-heading p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+    }
+
+    .photo {
+      display: grid;
+      place-items: center;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: #222a22;
+    }
+
+    .photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .placeholder {
+      display: none;
+      width: 100%;
+      height: 100%;
+      padding: 24px;
+      place-content: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at center, #414b2f, #20271f);
+    }
+
+    .placeholder-icon {
+      display: block;
+      font-size: 48px;
+      line-height: 1.3;
+    }
+
+    .placeholder-title {
+      display: block;
+      margin-top: 8px;
+      color: var(--accent);
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .placeholder-note {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .photo.is-missing img {
+      display: none;
+    }
+
+    .photo.is-missing .placeholder {
+      display: grid;
+    }
+
+    .card-body {
+      padding: 18px;
+    }
+
+    .category {
+      margin: 0 0 5px;
+      color: var(--accent);
+      font-size: 11px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.5;
+    }
+
+    .description {
+      margin: 8px 0 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .price {
+      color: var(--accent);
+      font-size: 20px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .price-label {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .order-panel {
+      margin-top: 24px;
+      padding: 22px;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--surface);
+    }
+
+    .order-panel h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .order-panel p {
+      margin: 8px 0 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .notice {
+      margin: 14px 0 0;
+      padding: 12px;
+      background: #292419;
+      border-radius: 10px;
+      color: var(--accent);
+      font-size: 13px;
+    }
+
+    .notice[hidden] {
+      display: none;
+    }
+
+    footer {
+      padding: 4px 16px 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    @media (max-width: 560px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        width: min(100% - 28px, 760px);
+      }
+
+      header {
+        padding-top: 28px;
+      }
+
+      .card-body {
+        padding: 16px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-  <img src="images/logo.jpg" alt="Logo">
-  <h1>[RESTAURANT NAME]</h1>
-  <p>[AREA] • [CUISINE]</p>
-  <div class="buttons">
-    <a class="wa" href="https://wa.me/92XXXXXXXXXX">WhatsApp</a>
-    <a class="call" href="tel:+92XXXXXXXXXX">Call Now</a>
-  </div>
-</header>
 
-<section>
-  <h2>مقبول آئٹمز</h2>
-  <div class="grid">
-    <div class="card">
-      <img src="images/item1.jpg" alt="Item 1">
-      <div><h3>[ITEM 1 NAME]</h3><p>Rs. [PRICE]</p></div>
-    </div>
-    <div class="card">
-      <img src="images/item2.jpg" alt="Item 2">
-      <div><h3>[ITEM 2 NAME]</h3><p>Rs. [PRICE]</p></div>
-    </div>
-    <div class="card">
-      <img src="images/item3.jpg" alt="Item 3">
-      <div><h3>[ITEM 3 NAME]</h3><p>Rs. [PRICE]</p></div>
-    </div>
-    <div class="card">
-      <img src="images/item4.jpg" alt="Item 4">
-      <div><h3>[ITEM 4 NAME]</h3><p>Rs. [PRICE]</p></div>
-    </div>
+  <div class="demo-strip">
+    ڈیمو پریویو — ریسٹورنٹ کا نام، مینو اور قیمتیں فرضی ہیں
   </div>
-</section>
 
-<footer>Sample preview — replace menu, photos and contact details before sending to a client.</footer>
+  <header>
+    <div class="container">
+
+      <!-- لوگو آنے تک یہ نشان استعمال کریں -->
+      <div class="brand-mark" aria-label="ریسٹورنٹ کا عارضی نشان">
+        ذ ک
+      </div>
+
+      <p class="eyebrow" lang="en" dir="ltr">FRESH • FLAVOURFUL • LOCAL</p>
+
+      <h1>ذائقہ کچن</h1>
+
+      <p class="subtitle">
+        کراچی · بریانی، باربی کیو اور فاسٹ فوڈ
+      </p>
+
+      <div class="buttons">
+        <a class="btn btn-wa" data-contact="whatsapp" href="#order">
+          WhatsApp پر رابطہ
+        </a>
+
+        <a class="btn btn-call" data-contact="call" href="#order">
+          فون کریں
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="section-heading">
+      <h2>ہمارا مینو</h2>
+      <p>نمونہ آئٹمز — اصل مینو کے مطابق تبدیل کیے جاسکتے ہیں</p>
+    </div>
+
+    <div class="grid">
+
+      <article class="card">
+        <div class="photo">
+          <img src="images/item1.jpg" alt="چکن بریانی">
+
+          <div class="placeholder">
+            <span class="placeholder-icon" aria-hidden="true">🍚</span>
+            <span class="placeholder-title">چکن بریانی</span>
+            <span class="placeholder-note">تصویر جلد شامل کی جائے گی</span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <p class="category">بریانی</p>
+          <h3>چکن بریانی</h3>
+          <p class="description">
+            خوشبودار چاول اور چکن — مینو کی تفصیل کا نمونہ۔
+          </p>
+
+          <div class="price-row">
+            <span class="price" dir="ltr">Rs. 350</span>
+            <span class="price-label">نمونہ قیمت</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="photo">
+          <img src="images/item2.jpg" alt="باربی کیو پلیٹر">
+
+          <div class="placeholder">
+            <span class="placeholder-icon" aria-hidden="true">🔥</span>
+            <span class="placeholder-title">باربی کیو پلیٹر</span>
+            <span class="placeholder-note">تصویر جلد شامل کی جائے گی</span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <p class="category">باربی کیو</p>
+          <h3>باربی کیو پلیٹر</h3>
+          <p class="description">
+            گرلڈ باربی کیو کا انتخاب — مینو کی تفصیل کا نمونہ۔
+          </p>
+
+          <div class="price-row">
+            <span class="price" dir="ltr">Rs. 950</span>
+            <span class="price-label">نمونہ قیمت</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="photo">
+          <img src="images/item3.jpg" alt="بیف برگر">
+
+          <div class="placeholder">
+            <span class="placeholder-icon" aria-hidden="true">🍔</span>
+            <span class="placeholder-title">بیف برگر</span>
+            <span class="placeholder-note">تصویر جلد شامل کی جائے گی</span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <p class="category">فاسٹ فوڈ</p>
+          <h3>بیف برگر</h3>
+          <p class="description">
+            بیف پیٹی اور ساس کے ساتھ — مینو کی تفصیل کا نمونہ۔
+          </p>
+
+          <div class="price-row">
+            <span class="price" dir="ltr">Rs. 450</span>
+            <span class="price-label">نمونہ قیمت</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="photo">
+          <img src="images/item4.jpg" alt="ملائی بوٹی">
+
+          <div class="placeholder">
+            <span class="placeholder-icon" aria-hidden="true">🍢</span>
+            <span class="placeholder-title">ملائی بوٹی</span>
+            <span class="placeholder-note">تصویر جلد شامل کی جائے گی</span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <p class="category">باربی کیو</p>
+          <h3>ملائی بوٹی</h3>
+          <p class="description">
+            کریمی چکن بوٹی — مینو کی تفصیل کا نمونہ۔
+          </p>
+
+          <div class="price-row">
+            <span class="price" dir="ltr">Rs. 650</span>
+            <span class="price-label">نمونہ قیمت</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <section class="order-panel" id="order">
+      <h2>مینو دیکھیں، پھر رابطہ کریں</h2>
+
+      <p>
+        اصل ریسٹورنٹ کا نمبر شامل کرنے کے بعد یہ بٹن WhatsApp
+        پر گفتگو کھولے گا۔ اس ڈیمو میں کارٹ یا خودکار آرڈر سسٹم شامل نہیں۔
+      </p>
+
+      <a class="btn btn-wa" data-contact="whatsapp" href="#order">
+        WhatsApp کھولیں
+      </a>
+
+      <p class="notice" id="demo-notice" role="status" hidden>
+        یہ صرف ڈیمو ہے۔ اصل فون اور WhatsApp نمبر ابھی شامل نہیں کیا گیا۔
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    Sample restaurant menu · Concept by The iSource Digital
+    <br>
+    تصاویر، نام اور قیمتیں حتمی ریسٹورنٹ مینو کی نمائندگی نہیں کرتے۔
+  </footer>
+
+  <script>
+    /*
+      اصل نمبر ڈالنے کے لیے مثال:
+      const WHATSAPP_NUMBER = "923001234567";
+      const PHONE_NUMBER = "+923001234567";
+
+      ابھی خالی رکھیں تاکہ کسی غلط نمبر پر رابطہ نہ ہو۔
+    */
+
+    const WHATSAPP_NUMBER = "";
+    const PHONE_NUMBER = "";
+    const RESTAURANT_NAME = "ذائقہ کچن";
+
+    function showPlaceholder(img) {
+      img.parentElement.classList.add("is-missing");
+    }
+
+    document.querySelectorAll(".photo img").forEach(function (img) {
+      img.addEventListener("error", function () {
+        showPlaceholder(img);
+      });
+
+      if (img.complete && img.naturalWidth === 0) {
+        showPlaceholder(img);
+      }
+    });
+
+    document.querySelectorAll("[data-contact]").forEach(function (link) {
+      const type = link.dataset.contact;
+
+      if (type === "whatsapp" && WHATSAPP_NUMBER) {
+        const message =
+          "السلام علیکم، میں " + RESTAURANT_NAME + " کا مینو دیکھ کر رابطہ کر رہا ہوں۔";
+
+        link.href =
+          "https://wa.me/" +
+          WHATSAPP_NUMBER +
+          "?text=" +
+          encodeURIComponent(message);
+
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      } else if (type === "call" && PHONE_NUMBER) {
+        link.href = "tel:" + PHONE_NUMBER;
+      } else {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+
+          const notice = document.getElementById("demo-notice");
+          notice.hidden = false;
+          notice.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>
