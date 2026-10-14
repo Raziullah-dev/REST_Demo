@@ -134,4 +134,783 @@ a{color:inherit;text-decoration:none}
 }
 .category{
   padding:13px 22px;white-space:nowrap;border-radius:30px;
-  background:#eee;color:#555;font-size:13px;font-weight:
+  background:#eee;color:#555;font-size:13px;font-weight:700;
+}
+.category.selected{
+  background:var(--yellow);color:#222;
+  box-shadow:0 5px 12px #ffb80025;
+}
+.menu-heading{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:20px;margin:12px 0 22px;
+}
+.menu-heading h2{font-size:28px;margin:0}
+.menu-heading p{color:var(--muted);font-size:13px;margin:8px 0 0}
+.search{
+  width:270px;max-width:100%;border:1px solid #ddd;
+  padding:13px 16px;border-radius:13px;background:white;
+}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.card{
+  background:white;border:1px solid var(--line);
+  border-radius:20px;overflow:hidden;
+  box-shadow:0 6px 20px #00000004;
+}
+.card-photo{
+  height:220px;background:#f7f4ee;position:relative;
+  display:grid;place-items:center;
+}
+.card-photo img{width:100%;height:100%;object-fit:contain;padding:10px}
+.badge{
+  position:absolute;left:14px;top:14px;background:#fff;
+  border-radius:20px;padding:6px 10px;font-size:10px;font-weight:800;
+  box-shadow:0 2px 8px #0001;
+}
+.card-body{padding:20px}
+.card h3{font-size:18px;margin:0 0 9px}
+.card-description{color:#777;font-size:13px;line-height:1.6;min-height:42px;margin:0}
+.card-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:20px}
+.price{font-size:18px;font-weight:800}
+.add-button{
+  background:var(--yellow);border-radius:11px;
+  min-width:45px;height:42px;font-size:23px;font-weight:700;
+}
+.empty{padding:35px;color:#777;background:white;border-radius:15px}
+.footer{text-align:center;color:#888;font-size:12px;line-height:1.8;margin-top:35px}
+.cart-bar{
+  position:fixed;bottom:18px;left:112px;right:30px;
+  max-width:650px;margin:auto;
+  background:var(--yellow);border-radius:16px;
+  padding:17px 22px;display:flex;align-items:center;
+  justify-content:space-between;gap:15px;z-index:35;
+  box-shadow:0 10px 35px #0002;font-weight:800;
+}
+dialog{
+  border:0;border-radius:22px;padding:0;width:min(94vw,520px);
+  max-height:90vh;overflow:auto;color:var(--ink);
+  box-shadow:0 25px 80px #0004;
+}
+dialog::backdrop{background:#0007}
+.modal-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px;border-bottom:1px solid var(--line);
+}
+.modal-header h2{font-size:20px;margin:0}
+.close-button{width:35px;height:35px;border-radius:50%;background:#eee;font-size:22px}
+.modal-body{padding:20px}
+.item-preview{width:100%;height:220px;object-fit:contain;background:#f7f4ee;border-radius:16px}
+.modal-description{font-size:14px;color:#777;line-height:1.7}
+.quantity{
+  display:flex;align-items:center;gap:18px;
+  margin:20px 0;font-weight:800;
+}
+.quantity button{
+  width:36px;height:36px;background:#eee;border-radius:10px;font-size:20px;
+}
+.primary{
+  width:100%;padding:15px;border-radius:12px;
+  background:var(--yellow);font-weight:800;
+}
+.primary:disabled{opacity:.5;cursor:not-allowed}
+.field-label{display:block;font-size:12px;font-weight:700;margin:15px 0 7px}
+.field{
+  width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;
+}
+textarea.field{resize:vertical;min-height:75px}
+.cart-row{
+  padding:14px 0;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:15px;
+}
+.cart-row h3{font-size:14px;margin:0 0 6px}
+.cart-row p{font-size:12px;color:#777;margin:0}
+.cart-controls{display:flex;align-items:center;gap:10px;margin-top:10px}
+.cart-controls button{width:27px;height:27px;border-radius:7px;background:#eee}
+.remove-button{color:#a22;background:none!important;width:auto!important;font-size:11px}
+.total{display:flex;justify-content:space-between;font-weight:800;margin:20px 0}
+.small-note{font-size:11px;color:#777;line-height:1.7}
+.status{font-size:13px;color:#805e00;background:#fff7db;padding:12px;border-radius:10px;margin-top:12px}
+.contact-link{display:block;padding:14px;background:#f6f6f6;border-radius:12px;margin:12px 0}
+
+@media(min-width:1450px){
+  .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:1000px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero h1{font-size:40px}
+  .hero-copy{padding:28px}
+  .hero-art img{height:240px}
+}
+@media(max-width:650px){
+  .sidebar{display:none}
+  .app{margin-left:0}
+  .topbar{height:80px;padding:12px 16px}
+  .brand-name{font-size:18px}
+  .brand-caption{font-size:8px;letter-spacing:1px}
+  .brand-logo,.brand-symbol{width:42px;height:42px}
+  .location-icon,.location-label{display:none}
+  .location-value{font-size:11px;max-width:100px}
+  .header-actions{gap:5px}
+  .top-cart{padding:10px;font-size:12px}
+  .content{padding:16px 15px 110px}
+  .hero{grid-template-columns:1fr;min-height:0;border-radius:20px}
+  .hero-copy{padding:26px 24px 0}
+  .hero h1{font-size:38px;letter-spacing:-1px}
+  .hero p{font-size:12px;margin-bottom:0}
+  .hero-art{min-height:170px;padding:8px 20px 16px}
+  .hero-art img{height:180px}
+  .categories-wrap{top:80px;padding:13px 0}
+  .category{padding:11px 17px;font-size:12px}
+  .menu-heading{flex-direction:column;align-items:stretch;gap:15px}
+  .menu-heading h2{font-size:24px}
+  .search{width:100%}
+  .grid{gap:12px}
+  .card{border-radius:15px}
+  .card-photo{height:150px}
+  .card-body{padding:13px}
+  .card h3{font-size:15px}
+  .card-description{font-size:11px;min-height:53px}
+  .card-bottom{margin-top:14px}
+  .price{font-size:14px}
+  .add-button{min-width:34px;height:34px;font-size:20px}
+  .badge{left:8px;top:8px;font-size:9px}
+  .cart-bar{left:15px;right:15px;bottom:12px;font-size:13px;padding:16px}
+}
+@media(max-width:350px){
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+<nav class="sidebar" aria-label="Main navigation">
+  <a class="side-button" href="#home" aria-label="Home">⌂</a>
+  <a class="side-button active" href="#menu" aria-label="Menu">♧</a>
+  <button class="side-button" id="sideLocation" aria-label="Location">⌖</button>
+  <button class="side-button" id="sideCart" aria-label="Cart">▣</button>
+  <button class="side-button side-bottom" id="sideContact" aria-label="Contact">☎</button>
+</nav>
+
+<div class="app" id="home">
+  <header class="topbar">
+    <a class="brand" href="#home">
+      <span class="brand-symbol" id="brandSymbol" aria-hidden="true">♨</span>
+      <img class="brand-logo" id="brandLogo" alt="Restaurant logo" hidden>
+      <div>
+        <div class="brand-name" id="brandName"></div>
+        <div class="brand-caption" id="brandTagline"></div>
+      </div>
+    </a>
+
+    <div class="header-actions">
+      <button class="location-button" id="locationButton">
+        <span class="location-icon" aria-hidden="true">📍</span>
+        <span>
+          <span class="location-label">RESTAURANT LOCATION</span>
+          <span class="location-value" id="locationValue" style="display:block"></span>
+        </span>
+      </button>
+      <button class="top-cart" id="topCart">Cart · 0</button>
+    </div>
+  </header>
+
+  <div class="demo-note" id="demoNote">
+    SAMPLE MENU — illustrative items and prices. No real order is placed.
+  </div>
+
+  <main class="content">
+    <section class="hero" id="hero" aria-label="Featured offer">
+      <div class="hero-copy">
+        <span class="hero-tag" id="heroTag"></span>
+        <h1 id="heroTitle"></h1>
+        <p id="heroText"></p>
+        <a class="hero-button" href="#menu">Explore the menu →</a>
+      </div>
+      <div class="hero-art">
+        <img id="heroImage" alt="Featured food illustration">
+      </div>
+    </section>
+
+    <div class="categories-wrap">
+      <nav class="categories" id="categories" aria-label="Menu categories"></nav>
+    </div>
+
+    <section id="menu">
+      <div class="menu-heading">
+        <div>
+          <h2 id="sectionTitle">Our Menu</h2>
+          <p>Find your favourites. Add them to your order request.</p>
+        </div>
+        <input class="search" id="search" type="search"
+          placeholder="Search the menu..." aria-label="Search the menu">
+      </div>
+      <div class="grid" id="grid"></div>
+      <p class="empty" id="empty" hidden>No matching items. Try another search.</p>
+    </section>
+
+    <footer class="footer">
+      <div id="footerName"></div>
+      <div id="footerAddress"></div>
+      <div>Menu preview by The iSource Digital</div>
+    </footer>
+  </main>
+</div>
+
+<button class="cart-bar" id="cartBar" hidden>
+  <span id="cartBarCount"></span>
+  <span>View cart →</span>
+  <span id="cartBarTotal"></span>
+</button>
+
+<dialog id="itemDialog" aria-labelledby="itemTitle">
+  <div class="modal-header">
+    <h2 id="itemTitle"></h2>
+    <button class="close-button" data-close="itemDialog" aria-label="Close">×</button>
+  </div>
+  <div class="modal-body">
+    <img class="item-preview" id="itemImage" alt="">
+    <p class="modal-description" id="itemDescription"></p>
+    <strong id="itemPrice"></strong>
+    <div class="quantity">
+      <button id="quantityMinus" aria-label="Decrease quantity">−</button>
+      <span id="quantityValue">1</span>
+      <button id="quantityPlus" aria-label="Increase quantity">+</button>
+    </div>
+    <button class="primary" id="addToCart">Add to cart</button>
+  </div>
+</dialog>
+
+<dialog id="cartDialog" aria-labelledby="cartTitle">
+  <div class="modal-header">
+    <h2 id="cartTitle">Your order request</h2>
+    <button class="close-button" data-close="cartDialog" aria-label="Close">×</button>
+  </div>
+  <div class="modal-body">
+    <div id="cartItems"></div>
+    <div class="total"><span>Items subtotal</span><span id="cartTotal"></span></div>
+
+    <label class="field-label" for="customerName">Your name (optional)</label>
+    <input class="field" id="customerName" placeholder="Enter your name" maxlength="100">
+
+    <label class="field-label" for="customerAddress">Address / pickup details (optional)</label>
+    <textarea class="field" id="customerAddress"
+      placeholder="Delivery address, or mention pickup" maxlength="500"></textarea>
+
+    <label class="field-label" for="customerNotes">Order notes (optional)</label>
+    <textarea class="field" id="customerNotes"
+      placeholder="Any special requests?" maxlength="500"></textarea>
+
+    <p class="small-note">
+      Subtotal excludes any delivery fees and applicable taxes.
+      Availability, final total and delivery must be confirmed by the restaurant.
+      This page does not process payments.
+    </p>
+
+    <button class="primary" id="sendOrder">Send request on WhatsApp</button>
+    <div class="status" id="cartStatus" role="status" hidden></div>
+  </div>
+</dialog>
+
+<dialog id="contactDialog" aria-labelledby="contactTitle">
+  <div class="modal-header">
+    <h2 id="contactTitle">Restaurant details</h2>
+    <button class="close-button" data-close="contactDialog" aria-label="Close">×</button>
+  </div>
+  <div class="modal-body">
+    <p id="contactAddress"></p>
+    <a class="contact-link" id="mapLink" target="_blank" rel="noopener noreferrer" hidden>
+      Open location in Google Maps →
+    </a>
+    <a class="contact-link" id="phoneLink" hidden>Call restaurant →</a>
+    <p class="small-note" id="contactHint"></p>
+  </div>
+</dialog>
+
+<script>
+/* =========================================================
+   EDIT THIS SECTION FOR EACH RESTAURANT
+   WhatsApp: country code + number, digits only.
+   Example: 923001234567
+   Keep demoMode true while presenting a sample.
+   ========================================================= */
+
+const CONFIG = {
+  name: "FLAVOUR HOUSE",
+  tagline: "GOOD FOOD. GREAT MOMENTS.",
+  area: "Karachi",
+  address: "Your restaurant address, Karachi",
+  whatsapp: "",
+  phone: "",
+  mapsUrl: "",
+  demoMode: true,
+
+  logo: "",
+  banner: "",
+
+  heroTag: "FRESHLY MADE FAVOURITES",
+  heroTitle: "Big flavours.\nEvery single bite.",
+  heroText: "From sizzling grills to comforting classics — discover a menu made for your cravings.",
+  heroImage: "",
+
+  currency: "Rs.",
+  categories: ["All", "Deals", "Biryani", "BBQ", "Burgers", "Sides"],
+
+  items: [
+    {
+      id: "deal1",
+      name: "Family Feast",
+      category: "Deals",
+      description: "A sharing selection of BBQ, rice and sides.",
+      price: 1990,
+      image: "images/item2.jpg",
+      art: "bbq",
+      badge: "SHARING DEAL"
+    },
+    {
+      id: "biryani1",
+      name: "Chicken Biryani",
+      category: "Biryani",
+      description: "Aromatic rice, tender chicken and traditional spices.",
+      price: 350,
+      image: "images/item1.jpg",
+      art: "rice",
+      badge: "POPULAR"
+    },
+    {
+      id: "bbq1",
+      name: "BBQ Platter",
+      category: "BBQ",
+      description: "Grilled favourites served with fresh chutney.",
+      price: 950,
+      image: "images/item2.jpg",
+      art: "bbq",
+      badge: ""
+    },
+    {
+      id: "burger1",
+      name: "Beef Burger",
+      category: "Burgers",
+      description: "A juicy beef patty with crisp salad and house sauce.",
+      price: 450,
+      image: "images/item3.jpg",
+      art: "burger",
+      badge: "CHEF'S PICK"
+    },
+    {
+      id: "bbq2",
+      name: "Malai Boti",
+      category: "BBQ",
+      description: "Creamy marinated chicken, grilled until golden.",
+      price: 650,
+      image: "images/item4.jpg",
+      art: "bbq",
+      badge: ""
+    },
+    {
+      id: "side1",
+      name: "Golden Fries",
+      category: "Sides",
+      description: "Crispy golden fries with a lightly seasoned finish.",
+      price: 250,
+      image: "",
+      art: "fries",
+      badge: ""
+    }
+  ]
+};
+
+/* =========================================================
+   TEMPLATE LOGIC — NO EDITS REQUIRED BELOW
+   ========================================================= */
+
+const $ = id => document.getElementById(id);
+const money = value => CONFIG.currency + " " + value.toLocaleString("en-PK");
+let category = "All";
+let selectedItem = null;
+let quantity = 1;
+const cart = new Map();
+
+function illustration(type){
+  let drawing = "";
+
+  if(type === "burger"){
+    drawing = `
+      <path d="M95 143 Q105 55 200 55 Q295 55 305 143Z" fill="#eaa044"/>
+      <g fill="#fff1ce">
+        <ellipse cx="150" cy="94" rx="6" ry="3"/>
+        <ellipse cx="200" cy="80" rx="6" ry="3"/>
+        <ellipse cx="250" cy="104" rx="6" ry="3"/>
+      </g>
+      <path d="M92 151 Q115 140 140 154 T190 154 T240 154 T308 151"
+        fill="none" stroke="#64953b" stroke-width="17"/>
+      <rect x="94" y="165" width="212" height="24" rx="12" fill="#733920"/>
+      <path d="M102 190 L298 190 L260 216 L210 201 L160 216Z" fill="#ffcb43"/>
+      <rect x="100" y="213" width="200" height="30" rx="15" fill="#df933d"/>`;
+  }else if(type === "rice"){
+    drawing = `
+      <ellipse cx="200" cy="169" rx="116" ry="67" fill="#e6b955"/>
+      <g fill="#fff0b7">
+        ${Array.from({length:32},(_,i)=>{
+          const x=110+(i*37)%178,y=125+(i*19)%80;
+          return `<ellipse cx="${x}" cy="${y}" rx="9" ry="3" transform="rotate(${i*23} ${x} ${y})"/>`;
+        }).join("")}
+      </g>
+      <path d="M106 175 Q200 223 294 175 L279 223 Q200 277 121 223Z" fill="#f9faf4"/>
+      <ellipse cx="200" cy="181" rx="89" ry="23" fill="#d99334"/>
+      <path d="M158 140 Q160 110 194 124 L224 148 Q218 183 183 175Z" fill="#aa542e"/>
+      <g fill="#58834a">
+        <ellipse cx="146" cy="163" rx="10" ry="5"/>
+        <ellipse cx="240" cy="146" rx="10" ry="5"/>
+      </g>`;
+  }else if(type === "fries"){
+    drawing = `
+      <g stroke="#efb647" stroke-width="17" stroke-linecap="round">
+        <path d="M145 173 L131 85"/><path d="M169 170 L166 65"/>
+        <path d="M196 171 L194 86"/><path d="M222 170 L231 65"/>
+        <path d="M247 175 L266 88"/>
+      </g>
+      <path d="M119 154 L281 154 L263 249 L137 249Z" fill="#ca4a36"/>
+      <path d="M134 161 Q200 190 266 161" fill="none" stroke="#e96b4c" stroke-width="8"/>
+      <circle cx="200" cy="213" r="20" fill="#ffcb57"/>`;
+  }else if(type === "pizza"){
+    drawing = `
+      <circle cx="200" cy="150" r="108" fill="#d59442"/>
+      <circle cx="200" cy="150" r="95" fill="#ba4d32"/>
+      <circle cx="200" cy="150" r="87" fill="#f5cd6b"/>
+      <g fill="#a9462d">
+        <circle cx="158" cy="101" r="17"/><circle cx="238" cy="105" r="17"/>
+        <circle cx="190" cy="156" r="17"/><circle cx="253" cy="182" r="17"/>
+        <circle cx="143" cy="194" r="17"/>
+      </g>
+      <g fill="#4d8040">
+        <path d="M165 135l18-12 8 12-18 12Z"/>
+        <path d="M218 207l18-12 8 12-18 12Z"/>
+        <path d="M245 142l18-12 8 12-18 12Z"/>
+      </g>`;
+  }else{
+    drawing = `
+      <ellipse cx="200" cy="190" rx="130" ry="64" fill="#ece8dc"/>
+      <ellipse cx="200" cy="182" rx="116" ry="50" fill="#d4d1c5"/>
+      <g stroke="#94653c" stroke-width="5">
+        <path d="M105 119L285 227"/><path d="M117 88L304 195"/>
+      </g>
+      <g fill="#b96532" stroke="#e1a45c" stroke-width="3">
+        <rect x="121" y="122" width="42" height="35" rx="9" transform="rotate(30 142 139)"/>
+        <rect x="169" y="151" width="42" height="35" rx="9" transform="rotate(30 190 168)"/>
+        <rect x="220" y="181" width="42" height="35" rx="9" transform="rotate(30 241 198)"/>
+        <rect x="138" y="96" width="42" height="35" rx="9" transform="rotate(30 159 113)"/>
+        <rect x="187" y="125" width="42" height="35" rx="9" transform="rotate(30 208 142)"/>
+        <rect x="237" y="153" width="42" height="35" rx="9" transform="rotate(30 258 170)"/>
+      </g>
+      <circle cx="108" cy="199" r="22" fill="#689548"/>
+      <circle cx="108" cy="199" r="15" fill="#b9cd65"/>`;
+  }
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+    <ellipse cx="200" cy="255" rx="110" ry="12" fill="#00000012"/>
+    ${drawing}</svg>`;
+
+  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+}
+
+function loadImage(img, source, art){
+  img.onerror = () => {
+    img.onerror = null;
+    img.src = illustration(art);
+    img.alt += " — sample illustration";
+  };
+  img.src = source || illustration(art);
+}
+
+function openDialog(id){
+  if(!$(id).open) $(id).showModal();
+}
+
+$("brandName").textContent = CONFIG.name;
+$("brandTagline").textContent = CONFIG.tagline;
+$("locationValue").textContent = CONFIG.area;
+$("footerName").textContent = CONFIG.name;
+$("footerAddress").textContent = CONFIG.address;
+$("contactAddress").textContent = CONFIG.address;
+document.title = CONFIG.name + " — Menu & Order Request";
+$("demoNote").hidden = !CONFIG.demoMode;
+
+if(CONFIG.logo){
+  const logo = $("brandLogo");
+  logo.onerror = () => {
+    logo.hidden = true;
+    $("brandSymbol").hidden = false;
+  };
+  logo.src = CONFIG.logo;
+  logo.hidden = false;
+  $("brandSymbol").hidden = true;
+}
+
+$("heroTag").textContent = CONFIG.heroTag;
+$("heroTitle").textContent = CONFIG.heroTitle;
+$("heroTitle").style.whiteSpace = "pre-line";
+$("heroText").textContent = CONFIG.heroText;
+loadImage($("heroImage"), CONFIG.heroImage, "pizza");
+
+if(CONFIG.banner){
+  const banner = document.createElement("img");
+  banner.alt = CONFIG.name + " promotional banner";
+  banner.onload = () => {
+    $("hero").replaceChildren(banner);
+    $("hero").classList.add("custom-banner");
+  };
+  banner.src = CONFIG.banner;
+}
+
+if(/^https?:\/\//i.test(CONFIG.mapsUrl)){
+  $("mapLink").href = CONFIG.mapsUrl;
+  $("mapLink").hidden = false;
+}
+const phoneDigits = CONFIG.phone.replace(/\D/g,"");
+if(!CONFIG.demoMode && phoneDigits.length >= 10){
+  $("phoneLink").href = "tel:+" + phoneDigits;
+  $("phoneLink").hidden = false;
+}
+$("contactHint").textContent = CONFIG.demoMode
+  ? "Sample details. Replace them with the restaurant's verified contact information."
+  : "Contact the restaurant to confirm timings and service availability.";
+
+CONFIG.categories.forEach(name => {
+  const button = document.createElement("button");
+  button.className = "category" + (name === category ? " selected" : "");
+  button.textContent = name;
+  button.setAttribute("aria-pressed", String(name === category));
+  button.addEventListener("click", () => {
+    category = name;
+    document.querySelectorAll(".category").forEach(el => {
+      const active = el.textContent === name;
+      el.classList.toggle("selected",active);
+      el.setAttribute("aria-pressed",String(active));
+    });
+    renderMenu();
+  });
+  $("categories").append(button);
+});
+
+function renderMenu(){
+  $("grid").replaceChildren();
+  const query = $("search").value.trim().toLowerCase();
+  const items = CONFIG.items.filter(item =>
+    (category === "All" || item.category === category) &&
+    (item.name + " " + item.description).toLowerCase().includes(query)
+  );
+
+  $("sectionTitle").textContent = category === "All" ? "Our Menu" : category;
+  $("empty").hidden = items.length > 0;
+
+  items.forEach(item => {
+    const card = document.createElement("article");
+    card.className = "card";
+
+    const photo = document.createElement("div");
+    photo.className = "card-photo";
+    const img = document.createElement("img");
+    img.alt = item.name;
+    img.loading = "lazy";
+    loadImage(img,item.image,item.art);
+    photo.append(img);
+
+    if(item.badge){
+      const badge = document.createElement("span");
+      badge.className = "badge";
+      badge.textContent = item.badge;
+      photo.append(badge);
+    }
+
+    const body = document.createElement("div");
+    body.className = "card-body";
+    const name = document.createElement("h3");
+    name.textContent = item.name;
+    const description = document.createElement("p");
+    description.className = "card-description";
+    description.textContent = item.description;
+
+    const bottom = document.createElement("div");
+    bottom.className = "card-bottom";
+    const price = document.createElement("span");
+    price.className = "price";
+    price.textContent = money(item.price);
+    const add = document.createElement("button");
+    add.className = "add-button";
+    add.textContent = "+";
+    add.setAttribute("aria-label","Choose " + item.name);
+    add.addEventListener("click",() => openItem(item));
+
+    bottom.append(price,add);
+    body.append(name,description,bottom);
+    card.append(photo,body);
+    $("grid").append(card);
+  });
+}
+
+function openItem(item){
+  selectedItem = item;
+  quantity = 1;
+  $("itemTitle").textContent = item.name;
+  $("itemDescription").textContent = item.description;
+  $("itemImage").alt = item.name;
+  loadImage($("itemImage"),item.image,item.art);
+  updateQuantity();
+  openDialog("itemDialog");
+}
+
+function updateQuantity(){
+  $("quantityValue").textContent = quantity;
+  $("itemPrice").textContent = money(selectedItem.price);
+  $("addToCart").textContent = "Add to cart · " + money(selectedItem.price * quantity);
+  $("quantityMinus").disabled = quantity === 1;
+  $("quantityPlus").disabled = quantity === 99;
+}
+
+$("quantityMinus").onclick = () => {
+  quantity = Math.max(1,quantity-1);
+  updateQuantity();
+};
+$("quantityPlus").onclick = () => {
+  quantity = Math.min(99,quantity+1);
+  updateQuantity();
+};
+$("addToCart").onclick = () => {
+  cart.set(selectedItem.id,(cart.get(selectedItem.id)||0)+quantity);
+  $("itemDialog").close();
+  updateCart();
+};
+
+function cartSummary(){
+  let count = 0,total = 0;
+  cart.forEach((qty,id) => {
+    const item = CONFIG.items.find(entry => entry.id === id);
+    if(item){count += qty;total += item.price * qty;}
+  });
+  return {count,total};
+}
+
+function updateCart(){
+  const {count,total} = cartSummary();
+  $("topCart").textContent = "Cart · " + count;
+  $("cartBar").hidden = count === 0;
+  $("cartBarCount").textContent = count + (count === 1 ? " item" : " items");
+  $("cartBarTotal").textContent = money(total);
+  renderCart();
+}
+
+function renderCart(){
+  $("cartItems").replaceChildren();
+  $("cartStatus").hidden = true;
+
+  if(cart.size === 0){
+    const text = document.createElement("p");
+    text.className = "small-note";
+    text.textContent = "Your cart is empty. Explore the menu to add an item.";
+    $("cartItems").append(text);
+  }
+
+  cart.forEach((qty,id) => {
+    const item = CONFIG.items.find(entry => entry.id === id);
+    const row = document.createElement("div");
+    row.className = "cart-row";
+    const details = document.createElement("div");
+    const name = document.createElement("h3");
+    name.textContent = item.name;
+    const unitPrice = document.createElement("p");
+    unitPrice.textContent = money(item.price) + " each";
+    const controls = document.createElement("div");
+    controls.className = "cart-controls";
+
+    ["−","+"].forEach((symbol,index) => {
+      const button = document.createElement("button");
+      button.textContent = symbol;
+      button.setAttribute("aria-label",
+        (index === 0 ? "Decrease " : "Increase ") + item.name);
+      button.onclick = () => {
+        const next = qty + (index === 0 ? -1 : 1);
+        if(next <= 0) cart.delete(id);
+        else cart.set(id,next);
+        updateCart();
+      };
+      if(index === 0){
+        controls.append(button);
+        const number = document.createElement("span");
+        number.textContent = qty;
+        controls.append(number);
+      }else controls.append(button);
+    });
+
+    const remove = document.createElement("button");
+    remove.className = "remove-button";
+    remove.textContent = "Remove";
+    remove.onclick = () => {cart.delete(id);updateCart();};
+    controls.append(remove);
+
+    details.append(name,unitPrice,controls);
+    const lineTotal = document.createElement("strong");
+    lineTotal.textContent = money(qty * item.price);
+    row.append(details,lineTotal);
+    $("cartItems").append(row);
+  });
+
+  $("cartTotal").textContent = money(cartSummary().total);
+  $("sendOrder").disabled = cart.size === 0;
+}
+
+function showCart(){
+  renderCart();
+  openDialog("cartDialog");
+}
+["topCart","sideCart","cartBar"].forEach(id => $(id).onclick = showCart);
+["locationButton","sideLocation","sideContact"].forEach(id => {
+  $(id).onclick = () => openDialog("contactDialog");
+});
+
+$("sendOrder").onclick = () => {
+  const number = CONFIG.whatsapp.trim();
+
+  if(CONFIG.demoMode || !/^[1-9]\d{9,14}$/.test(number)){
+    $("cartStatus").textContent =
+      "Demo only: no request was sent. Add the verified WhatsApp number and set demoMode to false to enable this button.";
+    $("cartStatus").hidden = false;
+    return;
+  }
+
+  const lines = [
+    "Hello " + CONFIG.name + ",",
+    "I would like to request the following order:",
+    ""
+  ];
+
+  cart.forEach((qty,id) => {
+    const item = CONFIG.items.find(entry => entry.id === id);
+    lines.push(qty + " × " + item.name + " — " + money(qty * item.price));
+  });
+
+  lines.push("","Items subtotal: " + money(cartSummary().total));
+  const name = $("customerName").value.trim();
+  const address = $("customerAddress").value.trim();
+  const notes = $("customerNotes").value.trim();
+  if(name) lines.push("Name: " + name);
+  if(address) lines.push("Address / pickup: " + address);
+  if(notes) lines.push("Notes: " + notes);
+  lines.push("","Please confirm availability, delivery fees, taxes and final total.");
+
+  const url = "https://wa.me/" + number + "?text=" + encodeURIComponent(lines.join("\n"));
+  window.open(url,"_blank","noopener,noreferrer");
+
+  $("cartStatus").textContent =
+    "Send the prepared message in WhatsApp. Your order is not confirmed until the restaurant replies.";
+  $("cartStatus").hidden = false;
+};
+
+document.querySelectorAll("[data-close]").forEach(button => {
+  button.onclick = () => $(button.dataset.close).close();
+});
+
+$("search").addEventListener("input",renderMenu);
+renderMenu();
+updateCart();
+</script>
+</body>
+</html>
